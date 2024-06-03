@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <dlfcn.h>
 #import <objc/runtime.h>
-#import <rootless.h>
+#import <roothide/roothide.h>
 #import "zip.h"
 
 #ifdef DEBUG
@@ -14,7 +14,7 @@
 #define kAppTypeKey @"ApplicationType"
 #define kRandomLength 32
 
-#define DPKG_PATH ROOT_PATH("/var/lib/dpkg/info/ai.akemi.appinst.list")
+#define DPKG_PATH jbroot("/var/lib/dpkg/info/ai.akemi.appinst.list")
 
 static const NSString *kRandomAlphanumeric = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -108,7 +108,7 @@ int main(int argc, const char *argv[]) {
 			printf("Please make sure that you download AppSync Unified from the official repository to ensure proper operation.\n");
 		}
 
-		if (access(ROOT_PATH("/.installed_dopamine"), F_OK) == 0) {
+		if (access(jbroot("/.installed_dopamine"), F_OK) == 0) {
 			printf("\n");
 			printf("WARNING: You appear to be using the Dopamine jailbreak.\n");
 			printf("         There is a known IPC (inter-process communication) issue with Dopamine that prevents apps from successfully installing.\n");
